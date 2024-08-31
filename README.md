@@ -230,3 +230,116 @@ The training set will be used for modellinga and the test sets will be used for 
 
 #### Scaling Values
 Scaling values in a dataset it is essential as it enables modelling of the dataset to be easier and ensures all features are normally distributed.
+
+### Checking for class imbalances
+Class imbalances may include the majority class and the minority class. If there is an imbalance between the two, this leads to the model performing well on the majority class and poorly on the minority class.
+Due to this, evaluating the performance of a model on imbalanced data can be challenging. Metrics like accuracy might be misleading, as the model could achieve high accuracy simply by predicting the majority class for all instances.
+It is effective there is balance between classes to avoid this challenge during evaluation.
+Ways of correcting class imbalance include either oversampling or undersampling or combininhg them through SMOTE.
+
+Since we are predicting the number of people that have diabetes and those who do not have, balancing the two classes will not be ideal since will have equal number of people who have diabetes and those who do not. This can be misleading because of the predictor variables that we have that are used to predict the target variable.
+
+## Modeling
+Under modeling we shall be creating a baseline model and a another model. We shall compare the two to find out which is better by adding more features and iterations and finding a way to regularize the model to get more better results.
+Cross validation will be used to validate the two models to find out which model is better and will be used as the final mode for evaluation.
+
+#### Baseline Model
+Under baseline model we shall be creating a simple logistic regression model with no changes to it and validating it using cross validation
+Baseline model has an accuracy score of 70.3% and a negative log loss of 0.6.
+
+### Second Model 
+For the second model will shall be using our scaled train set and adding a few more parameters to the logistic regression.
+The second model after adding a few parameters and using the scaled train set the accuracy is 78% and the negative loss function is 0.5.
+
+##### Comparison
+Comparing the baseline model and the second model we can could that the second model is better than the baseline model.
+The second model from the cross validation accuracy has an accuracy of 78% which is better compared to the baseline model that has an accuracy of 70%.
+
+When it comes to the negative loss function, the second model has a better negative loss of 0.5 which shows that the second model is more confident in its predictions and is assigning higher probabilities to the correct classes.
+The baseline model has a negative loss of 0.6 showing that the model is less confident in its predictions or is assigning higher probabilities to incorrect classes.
+
+In conclusion, we shall be using the second model as our final model to make predictions and evaluations for this project.
+
+## Evaluation
+The second model was agreed upon to be used as the final model for evaluation.
+Under evaluation, we shall be using the test data to evaluate our trained model and see if that can be used on new data.
+The processes of evaluation will include:
+ - Construction of a confusion matrix
+ - Use of evaluation metrics recall, precision and accuracy and how they relate to the project.
+ - Visualization of ROC curve and AUC curve.
+ - Analysis of the results with the project
+ - Recommendations
+
+ ### Construction of a confusion matrix
+A confusion matrix is a visualization that shows us:
+- The total number of true positives - true positive in this case is the number of diabetic mothers predicted to have diabetes is the actual number of mothers who have diabetes.
+- The total number of false positives  - the number of mothers who are predicted to have diabetes when in reality they do not have diabetes.
+- The total number of true negatives - the number of mothers predicted to not having diabetes and actually they do not have diabetes.
+- The total number of false negatives - the number of mothers predicted to not having diabetes when in reality they do have diabetes.
+
+![alt text](image.png)
+
+Results:
+-  The total number of true positives predicted by the model is 123.
+- The total number of true negatives predicted by the model is 414.
+- The total number of false positives predicted by the model is 104.
+- The total number of false negatives predicted by the model is 51.
+
+### Evaluation Metrics
+Under evaluation metrics we shall be looking at:
+- Accuracy
+- Precision
+- Recall 
+- F1 score
+
+#### Accuracy
+- In accuracy we shall be looking at how accurate the model is in predicting new data. This will enable us to determine if the model can be used on new data to prove that it is not overfitting.
+The model has an accuracy score of 78% which is a good accuracy showing that it can be used in prediction to figure out which mothers have diabetes, and which mothers do not have diabetes.
+
+This also shows us that our model is not overfitting and its not underfitting either.
+
+#### Precision
+In precision, we want to identify how many positive predictions were correct this is in terms of how many mothers or individuals actually do have diabetes.
+The precision score is 71%. This means that when the model predicts a positive outcome (e.g., a person has diabetes), there's a 71% chance that the prediction is accurate. This is useful as it helps to minimize the number of false positives.
+
+#### Recall
+In recall we measure how many actual positive cases were correctly predicted.
+From the results we have a moderate recall of 54%, this means that when a person truly has diabetes, there's a 54% chance that the model will correctly predict this.
+
+#### F1-score
+This the harmonic mean between precision and recall.
+An F1-score of 61% means that the model's performance is balanced between precision and recall.
+
+#### Visualization of the evaluation metrics
+- We shall be visualizing the evaluation metrics to see how they look in a graph with accordance with the model and showing their scores.
+![alt text](image-1.png)
+
+### ROC Curve and AUC curve
+ROC curve is used to illustrate the trade-off between true positive rate and false positive rate for a classification model.
+For this project the true positive rate is the actual positive cases correctly predicted as positive and the false positive rate is the actual negative cases incorrectly predicted as positive.
+Positive means has diabetes and negative means does not have diabetes.
+
+Auc indicates better overall performance. An AUC of 1 indicates a perfect classification, while an AUC of 0.5 indicates random guessing.
+
+![alt text](image-2.png)
+From the above visualization, the curve closer to the top-left corner indicates a better performance by the model, this is because it has a high true positive rate and a low false positive rate.
+
+The AUC is 0.81 which appears to be close to 1, this means that the model is good at distinguishing between positive and negative cases.
+
+### Analysis of the results of the project
+Through the evaluation of this model, the results noted from this analysis include:
+- High accuracy: The model portrays a high accuracy of 78%, indicating that it can effectively be used to identify mothers with diabetes, this is a important step for early intervention and prevention complications.
+- Balanced performance: From the f1-score of 61% the model showed a balance performance between precision and recall, showing that the model is neither overly sensitive nor overly specific.
+- Strong ROC curve performance: The high AUC value of 0.81 indicates that the model can effectively distinguish between mothers with and without diabetes, as evidenced by the ROC curve being close to the top-left corner.
+- Potential for improvement: While the model has good overall performance, the recall of 54% suggests that there is still room for improvement in identifying mothers with diabetes, particularly those with subtle or atypical symptoms.
+
+How the model can be implicated to the hospital practice:
+- Early detection: The model can be used for early detection in the hospital by identifying high-risks mothers early on, allowing for timely intervention and management.
+- Resource allocation: With the use of thie model, hospitals can allocate resources more effectively by prioritizing the cate of mothers identified as high risk or diabetic by the model.
+- Improved patient outcomes: With the use of this model, early diagnosis and management of diabetes can help prevent complications for both mothers and their children, leading to better overall health outcomes.
+
+### Recommendations
+Here we provide recommendations on how to improve the model:
+- Data refinement: Continuously update and refine the model with new data to improve its accuracy.
+- Feature engineering: Explore additional features that might enhance the model's predictive power.
+- Ensemble methods: Consider ensemble methods such as gradient boosting that may potentially improve performance further.
